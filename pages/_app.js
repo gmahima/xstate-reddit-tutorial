@@ -1,7 +1,11 @@
-import '../styles/globals.css'
+import React from 'react'
+import { GlobalStyles } from 'twin.macro'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const App = ({ Component, pageProps }) => (
+  <>
+    <GlobalStyles />
+    <Component {...pageProps} />
+  </>
+)
 
-export default MyApp
+export default App
