@@ -20,12 +20,13 @@ export const redditMachine = Machine({
     on: {
         SELECT: {
             target: '.selected',
-            // try without . (relative transition)
+            // try without . (internal transition)
             actions: assign((context, event) => {
                 // subreddit: (context, event)  => event.name
                 let subreddit = context.subreddits[event.name]
                 if(subreddit) {
                     // try returning without context
+                    // returning just subr dosehnt make a diff
                     return {
                         ...context,
                         subreddit
