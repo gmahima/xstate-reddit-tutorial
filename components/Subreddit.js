@@ -1,13 +1,11 @@
 import React, {useMemo} from 'react'
-import {useMachine} from '@xstate/react'
-import createSubredditMachine from '../machines/subredditMachine'
+import {useService} from '@xstate/react'
 
-const Subreddit = ({name}) => {
-    const subredditMachine = useMemo(() => {
-        return createSubredditMachine(name)
-    }, [name])
 
-    const [current, send] = useMachine(subredditMachine)
+const Subreddit = ({service}) => {
+
+
+    const [current, send] = useService(service)
     if(current.matches('failure')) {
         return (
             <div>
@@ -19,7 +17,7 @@ const Subreddit = ({name}) => {
     const {subreditt, posts, lastUpdated} = current.context
     return (
         <section
-        data-machine={subredditMachine.id}
+        data-machine={service.id}
         data-state= {current.toStrings().join(' ')}
         >
             {

@@ -10,7 +10,7 @@ const subreddits = ['frontend', 'reactjs', 'vuejs'];
 export default function Home() {
   const [current, send] = useMachine(redditMachine)
   const {subreddit} = current.context
-
+  console.log(subreddit)
   return (
     <AppContainer>
       <select onChange = {(e) => {send('SELECT', {name: e.target.value})}} >
@@ -20,7 +20,7 @@ export default function Home() {
       </select>
       <div>
           {
-            subreddit && <Subreddit name={subreddit} key={subreddit}/>
+            subreddit && <Subreddit service={subreddit} key={subreddit.id}/>
           }
 
       </div>
